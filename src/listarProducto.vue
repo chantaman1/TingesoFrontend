@@ -12,7 +12,7 @@
                   <div class="styled-select slate" style="margin-left: 10px">
                        <select v-model="categoria_seleccionado">
                        <option value=0 disabled selected style="width: 100px; font-family: georgia">Seleccionar categoría</option>
-                       <option @click.prevent="seleccionarCategoria()"
+                       <option v-bind:onClick="seleccionarCategoria"
                            style="width: 100px; font-family: georgia"
                            v-for="categoria in categorias"
                            v-bind:key="categoria.idCategoria"
