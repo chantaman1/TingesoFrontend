@@ -74,7 +74,7 @@ export default {
       //Se seleccionan los productos correspondientes a esa categoría seleccionada
       console.log("seleccionado");
       this.productos_filtrados = [];
-
+      console.log(this.categoria_seleccionado);
       for(let i = 0; i < this.productos.length; i++){
         if(this.productos[i].categoria == categoria.nombreCategoria){
           console.log(this.productos[i]);
