@@ -24,7 +24,6 @@
 
 <script>
 import axios from 'axios';
-
 const localhost = 'http://localhost:8060/backend';
 export default {
   components: {

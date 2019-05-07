@@ -42,7 +42,6 @@
 
 <script>
 import axios from 'axios';
-
 const localhost = 'http://localhost:8060/backend';
 export default {
   components: {
@@ -103,13 +102,11 @@ export default {
       }
       for(let i = 0; i < this.productos.length; i++){
         if(this.productos[i].categoria == categoria.nombreCategoria){
-
           this.productos_filtrados.push(this.productos[i]);
         }
       }
     },
   },
-
   mounted() {
     this.getProductos();
   }
