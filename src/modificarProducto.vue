@@ -44,7 +44,7 @@
 <script>
 import axios from 'axios';
 
-const localhost = 'http://localhost:8081';
+const localhost = 'http://localhost:8060/backend';
 export default {
   name : 'modificarProducto',
   props: ['postId'],
