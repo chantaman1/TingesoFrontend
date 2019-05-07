@@ -39,7 +39,7 @@
 <script>
 import axios from 'axios';
 
-const localhost = 'http://localhost:8060/backend';
+const localhost = 'http://159.203.94.72:8060/backend';
 export default {
   name : 'agregarProducto',
   props: ['postId'],
