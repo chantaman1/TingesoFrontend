@@ -77,7 +77,7 @@ export default {
 
       for(let i = 0; i < this.productos.length; i++){
         if(this.productos[i].categoria == categoria.nombreCategoria){
-
+          console.log(this.productos[i]);
           this.productos_filtrados.push(this.productos[i]);
         }
       }
