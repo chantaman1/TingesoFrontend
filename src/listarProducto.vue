@@ -72,7 +72,7 @@ export default {
     },
     seleccionarCategoria(){
       //Se seleccionan los productos correspondientes a esa categoría seleccionada
-
+      console.log("seleccionado");
       this.productos_filtrados = [];
 
       for(let i = 0; i < this.productos.length; i++){
