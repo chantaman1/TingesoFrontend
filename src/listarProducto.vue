@@ -10,13 +10,13 @@
             <label for="select">Seleccione una categoria:</label>
             <br><br>
                   <div class="styled-select slate" style="margin-left: 10px">
-                       <select v-model="categoria_seleccionado">
+                       <select  @click.prevent="seleccionarCategoria" v-model="categoria_seleccionado">
                        <option value=0 disabled selected style="width: 100px; font-family: georgia">Seleccionar categoría</option>
-                       <option @click='onClick(seleccionarCategoria)'
+                       <option
                            style="width: 100px; font-family: georgia"
                            v-for="categoria in categorias"
-                           v-bind:key="categoria.idCategoria"
-                           v-bind:value="categoria.idCategoria"> {{ categoria.nombreCategoria }}
+                           v-bind:key="categoria.nombreCategoria"
+                           v-bind:value="categoria.nombreCategoria"> {{ categoria.nombreCategoria }}
                        </option>
                        </select>
                   </div>
@@ -28,7 +28,7 @@
             <ul class="list-group">
                 <li v-for="producto in productos_filtrados"
                     style = "height: 50px; font-family: georgia; text-align: center"
-                    class = "list-group-item"> {{ producto.nombre_producto}}  ${{ producto.precio}}
+                    class = "list-group-item"> {{ producto.nombreProducto}}  ${{ producto.precio}}
                     <br>
                 </li>
                 <br>
@@ -42,7 +42,8 @@
 
 <script>
 import axios from 'axios';
-const localhost = 'http://159.203.94.72:8060/backend';
+
+const localhost = 'http://localhost:8081';
 export default {
   components: {
   },
@@ -50,7 +51,14 @@ export default {
     return{
       productos: [],
       selected: '',
-      categorias: [],
+      categorias: [
+        {
+          nombreCategoria: "Importado"
+        },
+        {
+          nombreCategoria: "Nacional"
+        }
+      ],
       productos_filtrados: [],
       categoria_seleccionado: 0,
     }
@@ -60,54 +68,22 @@ export default {
       const url = localhost + '/productos';
       axios.get(url).then((data) => {
         this.productos = data.data;
-        this.getCategorias();
       });
-    },
-    getCategorias(){
-      var aux, bool, k = 1;
-      for(let i = 0;i < this.productos.length; i++){
-        if(this.categorias.length == 0){
-          aux = {
-            'idCategoria': k,
-            'nombreCategoria': this.productos[i].categoria
-          };
-          this.categorias.push(aux);
-          k++;
-          i++;
-        }
-        bool = false;
-        for(let j = 0;j < this.categorias.length; j++){
-          if(this.categorias[j].nombreCategoria == this.productos[i].categoria){bool = true;}
-        }
-        if(bool){}
-        else{
-          aux = {
-            'idCategoria': k,
-            'nombreCategoria': this.productos[i].categoria
-          };
-          k++;
-          this.categorias.push(aux);
-        }
-      }
     },
     seleccionarCategoria(){
       //Se seleccionan los productos correspondientes a esa categoría seleccionada
-      console.log("SELECCIONADO");
-      console.log(this.categorias.length);
-      var categoria;
+
       this.productos_filtrados = [];
-      for(let i = 0; i < this.categorias.length; i++){
-        if(this.categorias[i].idCategoria == this.categoria_seleccionado){
-          categoria = this.categorias[i];
-        }
-      }
+
       for(let i = 0; i < this.productos.length; i++){
         if(this.productos[i].categoria == categoria.nombreCategoria){
+
           this.productos_filtrados.push(this.productos[i]);
         }
       }
     },
   },
+
   mounted() {
     this.getProductos();
   }
