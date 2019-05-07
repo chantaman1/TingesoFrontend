@@ -10,7 +10,7 @@
             <label for="select">Seleccione una categoria:</label>
             <br><br>
                   <div class="styled-select slate" style="margin-left: 10px">
-                       <select  @click.prevent="seleccionarCategoria" v-model="categoria_seleccionado">
+                       <select  @change="seleccionarCategoria()" v-model="categoria_seleccionado">
                        <option value=0 disabled selected style="width: 100px; font-family: georgia">Seleccionar categoría</option>
                        <option
                            style="width: 100px; font-family: georgia"
